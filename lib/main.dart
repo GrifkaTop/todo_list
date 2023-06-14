@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/src/feature/home_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todoflutter/src/pages/home_page.dart';
 
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  // база данных
+  var box = await Hive.openBox('mybox');
+
   runApp(const MyApp());
 }
 
