@@ -65,6 +65,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void hideCompletedTasks() {
+
+  }
+
   void deleteTask(int index) {
     setState(() {
       db.toDoList.removeAt(index);
@@ -75,7 +79,51 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //appBar  потом тут сделать
+        //кнопка добавление задачё
+        floatingActionButton: FloatingActionButton(
+          onPressed: createNewTask,
+          child: const Icon(Icons.add),
+        ),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              leading: IconButton(
+                  onPressed: hideCompletedTasks,
+                  icon: Icon(Icons.visibility_off, color: Colors.black)),
+              backgroundColor: Colors.white,
+              pinned: true,
+              expandedHeight: 100.0,
+              flexibleSpace: FlexibleSpaceBar(
+                title: //appbar
+                    Text('Мои Задачи', style: TextStyle(color: Colors.black)),
+              ),
+            ),
+            SliverFixedExtentList(
+              itemExtent: 50.0,
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Container(
+                      alignment: Alignment.center,
+                      child: ToDoTile(
+                        // задачи
+                        taskName: db.toDoList[index][0],
+                        taskCompleted: db.toDoList[index][1],
+                        onChanged: (value) => checkBoxChanged(value, index),
+                        deleteFunction: (context) => deleteTask(index),
+                      ));
+                },
+                childCount: db.toDoList.length,
+              ),
+            ),
+          ],
+        ));
+  }
+//версия без аппбара
+/*
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      //appBar  потом тут сделать
         backgroundColor: Colors.grey,
         //кнопка добавление задачё
         floatingActionButton: FloatingActionButton(
@@ -95,4 +143,5 @@ class _HomePageState extends State<HomePage> {
           },
         ));
   }
+   */
 }

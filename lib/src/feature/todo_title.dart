@@ -26,22 +26,19 @@ class ToDoTile extends StatelessWidget {
                 SlidableAction(onPressed: deleteFunction,
                   icon: Icons.delete,
                   backgroundColor: Colors.red,
-                  borderRadius: BorderRadius.circular(12),),
+                  ),
               ],
             ),
             child: Container(
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                    ),
                 child: Row(children: [
-                  Checkbox(value: taskCompleted, onChanged: onChanged),
-                  Text(
-                    taskName,
-                    style: TextStyle(
-                        decoration: taskCompleted
-                            ? TextDecoration.lineThrough
-                            : TextDecoration.none),
+                  Checkbox(value: taskCompleted, onChanged: onChanged, activeColor: Colors.green,),
+                  Text(taskName, style: TextStyle( decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                        color: taskCompleted ? Colors.grey : Colors.black),
+
                   ),
                 ]),
                ))
