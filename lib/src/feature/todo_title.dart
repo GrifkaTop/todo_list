@@ -15,12 +15,16 @@ class ToDoTile extends StatelessWidget {
     required this.deleteFunction
   });
 
+  void func(){
+  }
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
         padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 15.0),
         child: Slidable(
-            endActionPane: ActionPane(
+            endActionPane:  
+            ActionPane(
+
               motion: StretchMotion(),
               children: [
                 SlidableAction(onPressed: deleteFunction,
@@ -31,7 +35,7 @@ class ToDoTile extends StatelessWidget {
             ),
             child: Container(
                 padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     ),
                 child: Row(children: [

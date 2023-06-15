@@ -65,9 +65,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void hideCompletedTasks() {
-
-  }
+  void hideCompletedTasks() {}
 
   void deleteTask(int index) {
     setState(() {
@@ -76,6 +74,13 @@ class _HomePageState extends State<HomePage> {
     db.updateDataBase();
   }
 
+  /*Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                          onPressed: hideCompletedTasks,
+                          icon: Icon(Icons.visibility_off, color: Colors.black))
+                    ]),*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,17 +89,14 @@ class _HomePageState extends State<HomePage> {
           onPressed: createNewTask,
           child: const Icon(Icons.add),
         ),
-        body: CustomScrollView(
+          body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              leading: IconButton(
-                  onPressed: hideCompletedTasks,
-                  icon: Icon(Icons.visibility_off, color: Colors.black)),
               backgroundColor: Colors.white,
               pinned: true,
               expandedHeight: 100.0,
               flexibleSpace: FlexibleSpaceBar(
-                title: //appbar
+                title:
                     Text('Мои Задачи', style: TextStyle(color: Colors.black)),
               ),
             ),
